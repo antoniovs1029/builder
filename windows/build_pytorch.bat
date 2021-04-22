@@ -1,5 +1,3 @@
-@echo off
-
 :: This script parses args, installs required libraries (miniconda, MKL,
 :: Magma), and then delegates to cpu.bat, cuda80.bat, etc.
 
@@ -136,6 +134,11 @@ for %%v in (%DESIRED_PYTHON_PREFIX%) do (
     ) else (
         set "PATH=%CONDA_HOME%\envs\%%v;%CONDA_HOME%\envs\%%v\scripts;%CONDA_HOME%\envs\%%v\Library\bin;%ORIG_PATH%"
     )
+
+    echo %CONDA_HOME%
+    echo %PATH%
+    conda list    
+
     pip install ninja
     @setlocal
     :: Set Flags
