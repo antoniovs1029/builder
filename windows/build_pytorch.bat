@@ -131,7 +131,8 @@ set INSTALL_TEST=0
 for %%v in (%DESIRED_PYTHON_PREFIX%) do (
     :: Activate Python Environment
     set PYTHON_VERSION_STR=%%v
-    conda activate py!PYTHON_VERSION_STR!
+    :: when running on our azuredevops pipeline, conda isn't being activated correctly and it's actually not even being installed on the %CONDA_HOME% miniconda installation...
+    call conda.bat activate py!PYTHON_VERSION_STR!
     
     @REM set PYTHON_PREFIX=%%v
     @REM set "CONDA_LIB_PATH=%CONDA_HOME%\envs\%%v\Library\bin"
