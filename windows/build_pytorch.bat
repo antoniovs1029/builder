@@ -50,6 +50,7 @@ set "PATH=%CONDA_HOME%;%CONDA_HOME%\scripts;%CONDA_HOME%\Library\bin;%PATH%"
 
 :: Create a new conda environment
 setlocal EnableDelayedExpansion
+where conda
 FOR %%v IN (%DESIRED_PYTHON%) DO (
     set PYTHON_VERSION_STR=%%v
     set PYTHON_VERSION_STR=!PYTHON_VERSION_STR:.=!
@@ -129,15 +130,18 @@ set INSTALL_TEST=0
 
 for %%v in (%DESIRED_PYTHON_PREFIX%) do (
     :: Activate Python Environment
-    set PYTHON_PREFIX=%%v
-    set "CONDA_LIB_PATH=%CONDA_HOME%\envs\%%v\Library\bin"
-    if not "%ADDITIONAL_PATH%" == "" (
-        set "PATH=%ADDITIONAL_PATH%;%CONDA_HOME%\envs\%%v;%CONDA_HOME%\envs\%%v\scripts;%CONDA_HOME%\envs\%%v\Library\bin;%ORIG_PATH%"
-    ) else (
-        set "PATH=%CONDA_HOME%\envs\%%v;%CONDA_HOME%\envs\%%v\scripts;%CONDA_HOME%\envs\%%v\Library\bin;%ORIG_PATH%"
-    )
+    set PYTHON_VERSION_STR=%%v
+    conda activate py!PYTHON_VERSION_STR!
+    
+    @REM set PYTHON_PREFIX=%%v
+    @REM set "CONDA_LIB_PATH=%CONDA_HOME%\envs\%%v\Library\bin"
+    @REM if not "%ADDITIONAL_PATH%" == "" (
+    @REM     set "PATH=%ADDITIONAL_PATH%;%CONDA_HOME%\envs\%%v;%CONDA_HOME%\envs\%%v\scripts;%CONDA_HOME%\envs\%%v\Library\bin;%ORIG_PATH%"
+    @REM ) else (
+    @REM     set "PATH=%CONDA_HOME%\envs\%%v;%CONDA_HOME%\envs\%%v\scripts;%CONDA_HOME%\envs\%%v\Library\bin;%ORIG_PATH%"
+    @REM )
 
-    conda list    
+    conda list
 
     pip install ninja
     @setlocal
