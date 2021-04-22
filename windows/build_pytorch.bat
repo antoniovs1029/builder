@@ -62,6 +62,8 @@ FOR %%v IN (%DESIRED_PYTHON%) DO (
 )
 endlocal
 
+where conda
+
 ::Install libuv
 conda install -y -q -c conda-forge libuv=1.39
 set libuv_ROOT=%CONDA_HOME%\Library
@@ -135,8 +137,6 @@ for %%v in (%DESIRED_PYTHON_PREFIX%) do (
         set "PATH=%CONDA_HOME%\envs\%%v;%CONDA_HOME%\envs\%%v\scripts;%CONDA_HOME%\envs\%%v\Library\bin;%ORIG_PATH%"
     )
 
-    echo %CONDA_HOME%
-    echo %PATH%
     conda list    
 
     pip install ninja
