@@ -1,5 +1,3 @@
-@echo off
-
 :: This script parses args, installs required libraries (miniconda, MKL,
 :: Magma), and then delegates to cpu.bat, cuda80.bat, etc.
 
@@ -130,7 +128,6 @@ set INSTALL_TEST=0
 
 for %%v in (%DESIRED_PYTHON_PREFIX%) do (
     :: Activate Python Environment
-
     set PYTHON_VERSION_STR=%%v
     :: when running on our azuredevops pipeline, conda isn't being activated correctly and it's actually not even being installed on the %CONDA_HOME% miniconda installation...
     conda info --envs
@@ -145,6 +142,7 @@ for %%v in (%DESIRED_PYTHON_PREFIX%) do (
     @REM )
 
     conda list
+    
     pip install ninja
     @setlocal
     :: Set Flags
