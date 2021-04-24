@@ -1,5 +1,3 @@
-@echo off
-
 REM Check for necessary components
 
 IF NOT "%PROCESSOR_ARCHITECTURE%"=="AMD64" (
