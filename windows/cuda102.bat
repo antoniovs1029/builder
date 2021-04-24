@@ -1,5 +1,3 @@
-@echo off
-
 set MODULE_NAME=pytorch
 
 IF NOT EXIST "setup.py" IF NOT EXIST "%MODULE_NAME%" (
