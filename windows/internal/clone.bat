@@ -1,5 +1,3 @@
-@echo off
-
 :: The conda and wheels jobs are seperated on Windows, so we don't need to clone again.
 if exist "%NIGHTLIES_PYTORCH_ROOT%" (
     xcopy /E /Y /Q /H "%NIGHTLIES_PYTORCH_ROOT%" pytorch\

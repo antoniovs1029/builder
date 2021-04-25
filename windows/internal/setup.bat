@@ -1,5 +1,3 @@
-@echo off
-
 echo The flags after configuring:
 echo USE_CUDA=%USE_CUDA%
 echo CMAKE_GENERATOR=%CMAKE_GENERATOR%
@@ -86,6 +84,7 @@ goto build_end
 
 :pytorch
 :: This stores in e.g. D:/_work/1/s/windows/output/cpu
+@echo off
 pip wheel -vvv -e . --no-deps --wheel-dir "%PYTORCH_FINAL_PACKAGE_DIR%"
 
 :build_end

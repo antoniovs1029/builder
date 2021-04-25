@@ -1,5 +1,3 @@
-@echo off
-
 REM Check for optional components
 
 where /q ninja.exe
